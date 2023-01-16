@@ -72,5 +72,44 @@ public class BankAccount {
         this.accountEndDate = accountEndDate;
     }
 
+    public void showAccount() {
+        System.out.println("Account No: " + accountNo);
+        System.out.println("Fullname: " + fullName);
+        System.out.println("Balance: " + balance);
+    }
+
+    @Override
+    public String toString() {
+        return "BankAccount [accountNo=" + accountNo + ", fullName=" + fullName + ", balance=" + balance + ", isActive="
+                + isActive + ", accountStartDate=" + accountStartDate + ", accountEndDate=" + accountEndDate + "]";
+    }
+
+    public void deposit(double amount) {
+
+        if(!isActive) {
+            throw new IllegalArgumentException("You cannot make deposit to a closed account");
+        }
+
+        if (amount < 0) {
+            throw new IllegalArgumentException("You cannot make negative deposit");
+        } else {
+            balance = balance + amount;
+        }
+
+    }
+
+    public void withdraw(double amount) {
+
+        if(!isActive) {
+            throw new IllegalArgumentException("You cannot make withdrawal out of a closed account");
+        }
+
+        if (balance < amount) {
+            throw new IllegalArgumentException("Your balance is less than " + amount);
+        } else {
+            balance = balance - amount;
+        }
+
+    }
     
 }
